@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/dal/bookDao.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/controller/CardCRUD.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/web/ForAdmin.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/dal/OrderDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/web/ForAdminAccount.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/dal/AccountDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/model/item.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/model/order.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/web/home.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/controller/AdminCRUDAccount.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/controller/HomeServlet.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/model/card.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/controller/AdminCRUDBook.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/model/orderDetail.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/model/Book.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/web/card.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/test/ThuLamWeb/src/java/controller/LoginServlet.java</file>
+        </group>
+    </open-files>
+</project-private>
