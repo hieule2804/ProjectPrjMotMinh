@@ -142,100 +142,46 @@ response.sendRedirect("login.jsp");
                     </ul>
                 </div>
                 <!-- list account -->
-                    <form style="margin-left: 300px;
-                          margin-top: -30px;" action="adminaccount?action=getaccount" method="post">
-                        <input type="submit" value="Account">
-                    </form>
+                <form style="margin-left: 300px;
+                      margin-top: -30px;" action="adminaccount?action=getaccount" method="post">
+                    <input type="submit" value="Account">
+                </form>
 
                 <!-- don hang -->
                 <form style="margin-left: 430px;
-                      margin-top: -25px;" action="order?action=getOrder" method="post">
+                      margin-top: -25px;" action="admin?action=getOrder" method="post">
                     <input type="submit" value="order">
                 </form>
             </nav>
         </div>
     </div>
-    <!--form ADD-->
-    <form action="admin?action=Add" method="post" id="AddBook" style="display: none">
-        <h1> ADD BOOK</h1>
 
-        Book Name :<input style="margin-left: 10px;" type="text" name="BookName"><br>
-        image:<input style="margin-left: 50px;" type="text" name="image"><br>
-        author: <input style="margin-left: 45px;" type="text" name="author"><br>
-        price: <input style="margin-left: 55px;" type="text" name="price"><br>
-        date_of_public:<input type="text" name="date_of_public"><br>
-        describle:<input style="margin-left: 35px;" type="text" name="describle"><br>
-        categori: <select name="cate">
-            <option value="1">Kid Book</option>
-            <option value="2">Novel</option>
-            <option value="3">Short Story</option>
-            <option value="4">Poem</option>
-
-        </select>
-
-        <input type="submit" value="ADD">
-    </form>
-    <!--list book-->
-    <h2 style="color: red">${mess}</h2>
+    <div>
+    <!--list Order-->
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
-                <th >Book Name</th>
-                <th >image</th>
-                <th >author</th>
+                <th>orderID</th>
+                <th>BookID</th>
+                <th>quantity</th>
                 <th>price</th>
-                <th >Date OF Public</th>
-                <th >Describle</th>
-                <th>Categori</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${listBook}" var="book">
-
-                <tr>
-                    <td>${book.id}</td>
-                    <td>${book.bookname}</td>
-                    <td>${book.image}</td>
-                    <td>${book.author}</td>
-                    <td>${book.price}</td>
-                    <td>${book.date_of_public}</td>
-                    <td>${book.describle}</td>
-                    <td>${book.cateid}</td>
-                    <td>
-                        <input onclick="AddBook()" type="submit" value="ADD BOOK" >
-                        <form action="admin?action=delete&id=${book.id}" method="post">
-                            <input type="submit" value="DELETE">
-                        </form>
-                        <button onclick="Update(`${book.id}`, `${book.bookname}`, `${book.image}`, `${book.author}`, `${book.price}`, `${book.date_of_public}`, `${book.describle}`, `${book.cateid}`)">UPDATE</button>  
-                    </td>
-                </tr>
+            <c:forEach items="${listdetail}" var="order">
+                
+            <tr>
+                <td>${order.oid}</td>
+                <td>${order.bid}</td>
+                <td>${order.quantity}</td>
+                <td>${order.price}</td>
+               
+            </tr>
             </c:forEach>
-
         </tbody>
     </table>
+    </div>
 
-    <!--Form Update-->
-
-    <form action="admin?action=update" method="post" id="UpdateBook" style="display: none">
-        <h2>UPdate Book</h2>
-        <input style="display: none" type="text" name="ID"><br>
-        Book Name :<input style="margin-left: 10px;" type="text" name="BookName"><br>
-        image:<input style="margin-left: 50px;" type="text" name="image"><br>
-        author: <input style="margin-left: 45px;" type="text" name="author"><br>
-        price: <input style="margin-left: 55px;" type="text" name="price"><br>
-        date_of_public:<input type="text" name="date_of_public" placeholder="yyyy-MM-dd"><br>
-        describle:<input style="margin-left: 35px;" type="text" name="describle"><br>
-        categori: <select name="cate">
-            <option value="1">Kid Book</option>
-            <option value="2">Novel</option>
-            <option value="3">Short Story</option>
-            <option value="4">Poem</option>
-
-        </select>
-        <input type="submit" value="UPDATE">
-    </form>
     <!-- pagination -->
     <nav aria-label="Page navigation " style="text-align: center">
         <ul class="pagination">
@@ -287,31 +233,5 @@ response.sendRedirect("login.jsp");
         } else {
             x.style.display = 'none';
         }
-    }
-
-    function AddBook() {
-        let x = document.getElementById('AddBook');
-        if (x.style.display == 'none') {
-            x.style.display = 'block';
-        } else {
-            x.style.display = 'none';
-        }
-    }
-    function Update(id, name, image, author, price, date, des, cateid) {
-        let y = document.getElementById('UpdateBook');
-        if (y.style.display == 'none') {
-            y.style.display = 'block';
-        } else {
-            y.style.display = 'none';
-        }
-        document.querySelector("#UpdateBook input[name = ID]").value = id;
-        document.querySelector("#UpdateBook input[name = BookName]").value = name;
-        document.querySelector("#UpdateBook input[name = image]").value = image;
-        document.querySelector("#UpdateBook input[name = author]").value = author;
-        document.querySelector("#UpdateBook input[name = price]").value = price;
-        document.querySelector("#UpdateBook input[name = date_of_public]").value = date;
-        document.querySelector("#UpdateBook input[name = describle]").value = des;
-        document.querySelector("#UpdateBook input[name = cate]").value = cateid;
-
     }
 </script>

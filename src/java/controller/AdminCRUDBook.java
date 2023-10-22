@@ -25,6 +25,7 @@ import model.PageControl;
  * @author ADMIN
  */
 public class AdminCRUDBook extends HttpServlet {
+
     AccountDAO accdao = new AccountDAO();
     bookDao bookdao = new bookDao();
     categoriDAO catedao = new categoriDAO();
@@ -117,8 +118,8 @@ public class AdminCRUDBook extends HttpServlet {
                 } catch (Exception e) {
                     request.setAttribute("mess", "Can not Add Book!");
                 }
-                session.setAttribute("listBook", listBook);
-                session.setAttribute("listcate", catedao.getListCate());
+                request.setAttribute("listBook", listBook);
+                request.setAttribute("listcate", catedao.getListCate());
                 request.getRequestDispatcher("ForAdmin.jsp").forward(request, response);
                 break;
             case "delete":
@@ -147,8 +148,8 @@ public class AdminCRUDBook extends HttpServlet {
                 } catch (Exception e) {
                     request.setAttribute("mess", "Can not Update Book!");
                 }
-                session.setAttribute("listBook", listBook);
-                session.setAttribute("listcate", catedao.getListCate());
+                request.setAttribute("listBook", bookdao.getListBook());
+                request.setAttribute("listcate", catedao.getListCate());
                 request.getRequestDispatcher("ForAdmin.jsp").forward(request, response);
                 break;
             case "searchBook":
@@ -159,10 +160,10 @@ public class AdminCRUDBook extends HttpServlet {
                     session.setAttribute("listBook", listBook);
                     session.setAttribute("listcate", catedao.getListCate());
                     request.getRequestDispatcher("ForAdmin.jsp").forward(request, response);
-                }else{
-                        session.setAttribute("listAccount", accdao.getListAccountByName(nameSearch));
-                        session.setAttribute("listcate", catedao.getListCate());
-                        response.sendRedirect("ForAdminAccount.jsp");
+                } else {
+                    session.setAttribute("listAccount", accdao.getListAccountByName(nameSearch));
+                    session.setAttribute("listcate", catedao.getListCate());
+                    response.sendRedirect("ForAdminAccount.jsp");
                 }
                 break;
             case "searchByCate":
@@ -179,7 +180,7 @@ public class AdminCRUDBook extends HttpServlet {
                 session.setAttribute("listcate", catedao.getListCate());
                 response.sendRedirect("admin");
                 break;
-
+           
         }
 
     }

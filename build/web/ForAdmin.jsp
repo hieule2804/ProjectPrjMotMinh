@@ -19,12 +19,12 @@
     </head>
 
     <body>
-               <%
+        <%
 if( session.getAttribute("account") == null)
 {
-      response.sendRedirect("login.jsp");
+response.sendRedirect("login.jsp");
 }
-%>
+        %>
         <!--header-->
         <div class="header container ">
             <div class="firtHeader row" style="    margin-top: -20px;">
@@ -56,8 +56,8 @@ if( session.getAttribute("account") == null)
                     </div>
                     <!-- nut cua dang nhap-->
                     <div class="itemHearder col-md-4" style="      padding-top: 7px;
-    margin-left: 0px;
-    padding-left: 50px;">
+                         margin-left: 0px;
+                         padding-left: 50px;">
                         <%
                  if( session.getAttribute("account") ==null)
                  {
@@ -108,7 +108,7 @@ if( session.getAttribute("account") == null)
                         </div>
                         <%   }
                         %>
-                  
+
                     </div>
                 </div>
             </div>
@@ -141,13 +141,17 @@ if( session.getAttribute("account") == null)
                         </c:forEach>
                     </ul>
                 </div>
-    <!-- list account -->
-     
-    <form style="margin-left: 300px;
-    margin-top: -30px;" action="adminaccount?action=getaccount" method="post">
-        <input type="submit" value="Account">
-    </form>
-  
+                <!-- list account -->
+                    <form style="margin-left: 300px;
+                          margin-top: -30px;" action="adminaccount?action=getaccount" method="post">
+                        <input type="submit" value="Account">
+                    </form>
+
+                <!-- don hang -->
+                <form style="margin-left: 430px;
+                      margin-top: -25px;" action="order?action=getOrder" method="post">
+                    <input type="submit" value="order">
+                </form>
             </nav>
         </div>
     </div>
@@ -275,7 +279,7 @@ if( session.getAttribute("account") == null)
         }
     }
 
- 
+
     function LoginLogout() {
         let x = document.getElementById('LoginLogout');
         if (x.style.display == 'none') {

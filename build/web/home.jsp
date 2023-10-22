@@ -94,8 +94,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                             <div class="top-cart-content" id="LoginLogout" style="display: none;     margin-left: -30px;">
                                 <ul>
 
-                                    <a href="login"><i class=""></i> LOG OUT
+                                  <li>  <a href="login"><i class=""></i> LOG OUT
                                     </a></li>
+                                    <li></li>
                                 </ul>
                             </div>
                         </div>
@@ -154,17 +155,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <img style="    width: 200px;
                              height: 250px;" src="${o.image}" alt="...">
                         <div class="caption">
-                            <h3>${o.bookname}</h3>
-                            <p><a>Author : ${o.author}</a> </p>
-                            <p>  <a>Price : ${o.price} VND</a></p>
+                            <h3><a href="bookdetail?action=getbook&id=${o.id}">${o.bookname}</a></h3>
+                            <p>Author : ${o.author} </p>
+                            <p>  Price : ${o.price} VND</p>
                             <!--session su dung khi ma an vao nut buy or add to card de chuyen sang trang chi tiet san pham -->
-                            <%
-//if(  session.getAttribute("account")==null)
-//                            {
-//                           request.getRequestDispatcher("login.jsp").forward(request, response);
-//                            }
-                            %>
-                            <p><a href="#" class="btn btn-primary" role="button">BUY</a>
+                         
+                            <p>
+                                <form action="bookdetail?action=buy&id=${o.id}" method="post">
+                                <input type="submit" value="BUY">
+                            </form>
                                   
                             </p>
                             <form action="card?action=addtocard&id=${o.id}" method="post">

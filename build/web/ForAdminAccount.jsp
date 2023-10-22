@@ -27,7 +27,7 @@ if( session.getAttribute("account") == null)
 {
       response.sendRedirect("login.jsp");
 }
-%>
+        %>
         <!--header-->
         <div class="header container ">
             <div class="firtHeader row" style="    margin-top: -20px;">
@@ -38,8 +38,8 @@ if( session.getAttribute("account") == null)
                 </div>
                 <div class="rightHeader col-md-10" style="margin-top: 79px;">
                     <div class="seachHeader col-md-8">
-                       <!--Form Search-->
-                       <form style="width: 700px;" action="admin?action=searchBook" method="post" role="search">
+                        <!--Form Search-->
+                        <form style="width: 700px;" action="admin?action=searchBook" method="post" role="search">
                             <input style="    margin-left: 20px;
                                    width: 500px;
                                    height: 35px;" type="text" name="search" value="" placeholder="Tìm kiếm sản phẩm... "
@@ -59,8 +59,8 @@ if( session.getAttribute("account") == null)
                     </div>
                     <!-- nut an dang nhap -->
                     <div class="itemHearder col-md-4" style="       padding-top: 7px;
-    margin-left: 0px;
-    padding-left: 50px;">
+                         margin-left: 0px;
+                         padding-left: 50px;">
                         <%
                  if( session.getAttribute("account") ==null)
                  {
@@ -111,7 +111,7 @@ if( session.getAttribute("account") == null)
                         </div>
                         <%   }
                         %>
-                       
+
                     </div>
                 </div>
             </div>
@@ -144,15 +144,21 @@ if( session.getAttribute("account") == null)
                         </c:forEach>
                     </ul>
                 </div>
-    <!-- list account -->
-     
-    <form style="margin-left: 300px;
-    margin-top: -30px;" action="adminaccount?action=getaccount" method="post">
-        <input type="submit" value="Account">
-    </form>
-  
+                <!-- list account -->
+
+                <form style="margin-left: 300px;
+                      margin-top: -30px;" action="adminaccount?action=getaccount" method="post">
+                    <input type="submit" value="Account">
+                </form>
+
+        <!-- don hang -->
+        <form style="margin-left: 430px;
+              margin-top: -25px;" action="order?action=getOrder" method="post">
+            <input type="submit" value="order">
+        </form>
             </nav>
         </div>
+
     </div>
     <!--form ADD-->
     <form  action="adminaccount?action=Add" method="post" id="AddAccount" style="display: none ; margin-left: 500px">
@@ -161,23 +167,23 @@ if( session.getAttribute("account") == null)
         username :<input style="margin-left: 10px;" type="text" name="username"><br>
         password<input style="margin-left: 50px;" type="text" name="password"><br>
         date <input style="margin-left: 45px;" type="text" name="date"><br>
-       
+
         gender <select name="gender">
             <option value="true">Male</option>
             <option value="false">Female</option>
-          
+
         </select><br>
-   role <select name="role">
+        role <select name="role">
             <option value="2">admin</option>
             <option value="3">user</option>
-           
+
         </select>
         <input type="submit" value="ADD">
     </form>
     <!--list Account-->
     <h2 style="color: red">${mess}</h2>
     <table style="margin-left: 400px;
-    width: 700px;" border="1">
+           width: 700px;" border="1">
         <thead>
             <tr>
                 <th>username</th>
@@ -185,7 +191,7 @@ if( session.getAttribute("account") == null)
                 <th >date</th>
                 <th >gender</th>
                 <th>role</th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -202,7 +208,7 @@ if( session.getAttribute("account") == null)
                         <form action="adminaccount?action=delete&id=${acc.username}" method="post">
                             <input type="submit" value="DELETE">
                         </form>
-                        <button onclick="Update(`${acc.username}`,`${acc.password}`,`${acc.date}`,`${acc.gender}`,`${acc.role}`)">UPDATE</button>  
+                        <button onclick="Update(`${acc.username}`, `${acc.password}`, `${acc.date}`, `${acc.gender}`, `${acc.role}`)">UPDATE</button>  
                     </td>
                 </tr>
             </c:forEach>
@@ -212,25 +218,25 @@ if( session.getAttribute("account") == null)
 
     <!--Form Update-->
 
-    <form action="admin?action=update" method="post" id="UpdateAcc" style="display: none">
+    <form action="adminaccount?action=update" method="post" id="UpdateAcc" style="display: none">
         <h2>UPdate Book</h2>
-       username :<input style="margin-left: 10px;" type="text" name="username"><br>
+        username :<input style="margin-left: 10px;" type="text" name="username"><br>
         password<input style="margin-left: 50px;" type="text" name="password"><br>
         date <input style="margin-left: 45px;" type="text" name="date"><br>
-       
+
         gender <select name="gender">
             <option value="true">Male</option>
             <option value="false">Female</option>
-          
+
         </select><br>
-   role <select name="role">
+        role <select name="role">
             <option value="2">admin</option>
             <option value="3">user</option>
-           
+
         </select>
         <input type="submit" value="UPDATE">
     </form>
-    
+
 </body>
 
 </html>
@@ -244,7 +250,7 @@ if( session.getAttribute("account") == null)
         }
     }
 
- 
+
     function LoginLogout() {
         let x = document.getElementById('LoginLogout');
         if (x.style.display == 'none') {
@@ -262,7 +268,7 @@ if( session.getAttribute("account") == null)
             x.style.display = 'none';
         }
     }
-    function Update(username ,password ,date,gender,role) {
+    function Update(username, password, date, gender, role) {
         let y = document.getElementById('UpdateAcc');
         if (y.style.display == 'none') {
             y.style.display = 'block';
@@ -274,7 +280,7 @@ if( session.getAttribute("account") == null)
         document.querySelector("#UpdateAcc input[name = date]").value = date;
         document.querySelector("#UpdateAcc input[name = gender]").value = gender;
         document.querySelector("#UpdateAcc input[name = role]").value = role;
-    
+
 
     }
 </script>
