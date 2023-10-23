@@ -149,15 +149,15 @@ response.sendRedirect("login.jsp");
 
                 <!-- don hang -->
                 <form style="margin-left: 430px;
-                      margin-top: -25px;" action="admin?action=getOrder" method="post">
+                      margin-top: -25px;" action="order?action=getOrder" method="post">
                     <input type="submit" value="order">
                 </form>
             </nav>
         </div>
-    </div>
+    
 
     <!--list Order-->
-    <div>
+    
         
         <table border="1" style="width: 400px;
     margin-left: 300px;">
@@ -171,7 +171,7 @@ response.sendRedirect("login.jsp");
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${listOrder}" var="order">
+            <c:forEach items="${listorder}" var="order">
                 
             <tr>
                 <td>${order.id}</td>
@@ -186,27 +186,44 @@ response.sendRedirect("login.jsp");
             </tr>
             </c:forEach>
         </tbody>
-    </table>
+   </table>
         <!--list thong ke-->
         <table border="1" style="margin-left: 800px;
     margin-top: -124px;">
            <thead>
                <tr>
                    <th>customers buy the most</th>
-                   <th>best - selling</th>
                </tr>
            </thead>
            <tbody>
+               <c:set value="${thebestuser}" var="bestuser"></c:set>
                <tr>
-                   <td>${theMostUser}</td>
-                   <td>${bestselling.name}${bestselling.count}</td>
+                   <td>${bestuser}</td>
+                   
                </tr>
             
            </tbody>
        </table>
-    </div>
-
   
+                       <table border="1" style="margin-left: 1000px;
+    margin-top: -45px;">
+           <thead>
+               <tr>
+                   <th>best-selling</th>
+                   <th>number Of Book</th>
+               </tr>
+           </thead>
+           <tbody>
+               <c:forEach items="${themostselling}" var="themostselling">
+                   
+               <tr>
+                   <td>${themostselling.name}</td>
+                    <td>${themostselling.count}</td>
+               </tr>
+               </c:forEach>
+            
+           </tbody>
+       </table>
 </body>
 
 </html>

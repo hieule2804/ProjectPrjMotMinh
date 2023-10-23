@@ -21,16 +21,24 @@
         <servlet-class>controller.CardCRUD</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>OderServlet</servlet-name>
-        <servlet-class>controller.OderServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AccountCRUD</servlet-name>
         <servlet-class>controller.AccountCRUD</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BookDetail</servlet-name>
         <servlet-class>controller.BookDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>controller.OrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>controller.CommentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserAccount</servlet-name>
+        <servlet-class>controller.UserAccount</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
@@ -53,16 +61,24 @@
         <url-pattern>/card</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>OderServlet</servlet-name>
-        <url-pattern>/order</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AccountCRUD</servlet-name>
         <url-pattern>/accountcrud</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BookDetail</servlet-name>
         <url-pattern>/bookdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentServlet</servlet-name>
+        <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserAccount</servlet-name>
+        <url-pattern>/useraccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

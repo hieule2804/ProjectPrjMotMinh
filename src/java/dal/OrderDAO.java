@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
 import model.BestSellingProduct;
+import model.Book;
 import model.card;
 import model.item;
 import model.order;
@@ -72,13 +73,13 @@ public class OrderDAO extends DBContext {
     }
 
     public List<order> getlistOrder() {
+        List<order> listu = new ArrayList<>();
         connection = getConnection();
-        List<order> list = new ArrayList<>();
-        String sql = "SELECT [id]\n"
-                + "      ,[cusName]\n"
-                + "      ,[date]\n"
-                + "      ,[totalmoney]\n"
-                + "  FROM [dbo].[Order]";
+        String sql = "SELECT [id]\n" +
+"      ,[cusName]\n" +
+"      ,[date]\n" +
+"      ,[totalmoney]\n" +
+"  FROM [dbo].[Order]";
         try {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
@@ -92,13 +93,13 @@ public class OrderDAO extends DBContext {
                 o.setCusname(cusname);
                 o.setDate(date);
                 o.setTotaloney(totalMoney);
-                list.add(o);
+                listu.add(o);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+        return listu;
     }
 
     public List<orderDetail> getListDetail(int id) {
@@ -153,30 +154,28 @@ public class OrderDAO extends DBContext {
     }
 
     public List<BestSellingProduct> getbestSelling() {
-        List<BestSellingProduct> list = new ArrayList<>();
+        List<BestSellingProduct> listb = new ArrayList<>();
         connection = getConnection();
-        String sql = "WITH BidCounts AS (\n"
-                + "    SELECT [bid], COUNT([bid]) AS BidCount\n"
-                + "    FROM [dbo].[OrderDetail]\n"
-                + "    GROUP BY [bid]\n"
-                + ")\n"
-                + "SELECT [bid], BidCount\n"
-                + "FROM BidCounts\n"
-                + "WHERE BidCount = (SELECT MAX(BidCount) FROM BidCounts);";
+        String sql = "select top 1 bid,count(bid) as numberBook\n" +
+"  FROM [Testproject].[dbo].[OrderDetail]\n" +
+"  group by bid\n" +
+"  order by count(bid) desc";
         try {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                String name = resultSet.getString("bid");
-                int count = resultSet.getInt("BidCount");
+                int id = resultSet.getInt("bid");
+                Book a =  bookdao.getBookByid(id);
+                String name = a.getBookname();
+                int count = resultSet.getInt("numberBook");
                 BestSellingProduct b = new BestSellingProduct();
                 b.setName(name);
                 b.setCount(count);
-                list.add(b);
+                listb.add(b);
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+        return listb;
     }
 }

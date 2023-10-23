@@ -220,16 +220,16 @@ if( session.getAttribute("account") == null)
 
     <form action="adminaccount?action=update" method="post" id="UpdateAcc" style="display: none">
         <h2>UPdate Book</h2>
-        username :<input style="margin-left: 10px;" type="text" name="username"><br>
-        password<input style="margin-left: 50px;" type="text" name="password"><br>
-        date <input style="margin-left: 45px;" type="text" name="date"><br>
+        username :<input style="margin-left: 10px;" type="text" name="usernameud"><br>
+        password<input style="margin-left: 50px;" type="text" name="passwordud"><br>
+        date <input style="margin-left: 45px;" type="text" name="dateud"><br>
 
-        gender <select name="gender">
+        gender <select name="genderud">
             <option value="true">Male</option>
             <option value="false">Female</option>
 
         </select><br>
-        role <select name="role">
+        role <select name="roleud">
             <option value="2">admin</option>
             <option value="3">user</option>
 
@@ -275,11 +275,11 @@ if( session.getAttribute("account") == null)
         } else {
             y.style.display = 'none';
         }
-        document.querySelector("#UpdateAcc input[name = username]").value = username;
-        document.querySelector("#UpdateAcc input[name = password]").value = password;
-        document.querySelector("#UpdateAcc input[name = date]").value = date;
-        document.querySelector("#UpdateAcc input[name = gender]").value = gender;
-        document.querySelector("#UpdateAcc input[name = role]").value = role;
+        document.querySelector("#UpdateAcc input[name = usernameud]").value = username;
+        document.querySelector("#UpdateAcc input[name = passwordud]").value = password;
+        document.querySelector("#UpdateAcc input[name = dateud]").value = date;
+        document.querySelector("#UpdateAcc input[name = genderud]").value = gender;
+        document.querySelector("#UpdateAcc input[name = roleud]").value = role;
 
 
     }

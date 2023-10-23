@@ -149,7 +149,7 @@ response.sendRedirect("login.jsp");
 
                 <!-- don hang -->
                 <form style="margin-left: 430px;
-                      margin-top: -25px;" action="admin?action=getOrder" method="post">
+                      margin-top: -25px;" action="order?action=getOrder" method="post">
                     <input type="submit" value="order">
                 </form>
             </nav>

@@ -14,8 +14,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -89,6 +92,31 @@ public class AdminCRUDAccount extends HttpServlet {
                         session.setAttribute("listcate", catedao.getListCate());
                        request.getRequestDispatcher("ForAdminAccount.jsp").forward(request, response);
                 break;
+            case"update":
+                String usernameUD = request.getParameter("usernameud");
+                String dateUD = request.getParameter("dateud");
+                String genderUD = request.getParameter("genderud");
+                String passwordUD = request.getParameter("passwordud");
+                int roleUD =Integer.parseInt(request.getParameter("roleud"));
+                 boolean genderSUD = true;
+                if (genderUD.equalsIgnoreCase("false")) {
+                    genderSUD = false;
+                }
+            {
+                try {
+                 //chuyen date tu string sang date
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    // parsedDate dang la java.util.date
+                    Date parsedDate = (Date) dateFormat.parse(dateUD);
+                    accdao.updateAccount(usernameUD,passwordUD,new java.sql.Date(parsedDate.getTime()),genderSUD,roleUD);
+                    session.setAttribute("listAccount", accdao.getListAccount());
+                    request.getRequestDispatcher("ForAdminAccount.jsp").forward(request, response);
+                } catch (ParseException ex) {
+                    Logger.getLogger(AdminCRUDAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+                break;
+
         }
     }
 

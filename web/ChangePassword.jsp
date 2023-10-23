@@ -1,20 +1,16 @@
-<%-- 
-    Document   : productdetails
-    Created on : Oct 22, 2023, 12:12:04 AM
-    Author     : dell
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
 <html>
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <title>Change Password</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
         <!-- Css Styles -->
@@ -22,15 +18,9 @@
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 
-
     </head>
-    <body class="container">
-        <%
-if(  session.getAttribute("account")==null)
-                         {
-                        request.getRequestDispatcher("login.jsp").forward(request, response);
-                         }
-        %>
+
+    <body>
         <!--header-->
         <div class="header container ">
             <div class="firtHeader row" style="    margin-top: -20px;">
@@ -102,11 +92,11 @@ if(  session.getAttribute("account")==null)
                             <div class="top-cart-content" id="LoginLogout" style="display: none;     margin-left: -30px;">
                                 <ul>
 
-                                    <li>  <a href="login"><i class=""></i> LOG OUT
+                                    <li>  <a href="login?action=logout"><i class=""></i> LOG OUT
                                         </a></li>
-                                     <li>
-                                       <a href="login?action=changePass><i class=""></i> Change Password
-                                    </a>
+                                    <li>
+                                        <a href="login?action=changePass><i class=""></i> Change Password
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -155,75 +145,20 @@ if(  session.getAttribute("account")==null)
                 </nav>
             </div>
         </div>
+
         <!--body-->
-        <c:set value="${detailBook}" var="d"></c:set>
-            <!--book detail-->
-            <div class="mt-4" style="width: 100%; height: 100vh">
-                <div style="width: 100%; height: 100vh">
-                    <div class="col-md-12" style="width: 100%; height: 100vh">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="images p-3" style="height: 100%;">
-                                        <div class="text-center p-4"> <img id="main-image" src="${d.image}" width="250"
-                                                                       style="height: 500px;
-                                                                       width: 450px; " /> </div>
-                                    <!--<div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://doanducdong.com/wp-content/uploads/2021/10/dac-nhan-tam-1.jpg" width="70"> <img onclick="change_image(this)" src="https://doanducdong.com/wp-content/uploads/2021/10/dac-nhan-tam-1.jpg" width="70"> </div>-->
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="product p-4">
-                                    <div class="mt-4 mb-3"> <span style="font-size: 50px;" class="text-uppercase text-muted brand">${d.bookname} </span>
-                                        <h3 class="text-uppercase">Author : ${d.author} </h3>
-                                        <div style="font-size: 30px;" class="price d-flex flex-row align-items-center"> <span class="act-price"> Price :${d.price} VND</span>
-                                            <!--<div class="ml-2"> <small class="dis-price">$59</small> <span>40% OFF</span> </div>-->
-                                        </div>
-                                    </div>
-                                    <p style="font-size: 30px;" class="about">Descirble :${d.describle} </p>
-
-                                    <div class="cart mt-4 align-items-center"> 
-                                        <form action="bookdetail?action=buybook&id=${d.id}" method="post">
-                                            <button class="btn btn-primary text-uppercase mr-2 px-4">BUY</button> 
-                                        </form>
-                                        <form action="bookdetail?action=addtocard&id=${d.id}" method="post">
-                                            <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> 
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h1 style="color: red;">Đánh Giá Sản Phẩm</h1>
-                         <!--danh gia san pham-->
-                    <c:set value="${account}" var="a"></c:set>
-
-                        <div>
-                            <form action="comment?action=AddComment&id=${detailBook.id}" method="post">
-
-                            <img style="border-radius: 50%;width: 40px; height: 40px;"
-                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWT51mhd8Qcq6Pux_gY1H9FwXBqvHGBXPTHYRYXs-AWSr52Tribwj3gbiPYn9ORSRI0yc&usqp=CAU">
-                            <input style="border: 0px;font-size: 30px" type="text" readonly name="username" value="${a.username}"><br>
-                            <input style="margin-left: 50px; width: 1050px;" type="text" name="commnent"
-                                   placeholder="Write Comment"><br>
-                            <input style="margin-left: 1000px ;width: 100px" type="submit" value="Send">
-                        </form>
-                    </div>
-                    <!-- list comment -->
-                    <c:forEach items="${listcomment}" var="cmt" >
-
-                        <img style="border-radius: 50%;width: 40px; height: 40px;"
-                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWT51mhd8Qcq6Pux_gY1H9FwXBqvHGBXPTHYRYXs-AWSr52Tribwj3gbiPYn9ORSRI0yc&usqp=CAU">
-                        <input style="border: 0px;font-size: 30px" type="text" readonly name="username" value="${cmt.cmtuser}"><br>
-                        COMMENT:<input style="margin-left: 50px; width: 1000px;" type="text" readonly name="commnent" value="${cmt.cmtdetail}"
-                                       ><br>
-                    </c:forEach>
-                    
-                </div>
-            </div>
-        </div>
+        <c:set value="${account}" var="a"></c:set>
+        <form style="margin-left: 30px" action="useraccount?action=changepass&id=${a.username}" method="post">
+            Old-Password <input style="margin-left: 10px; width: 200px" type="password" name="old_pass"><br>
+            New-Password <input style="margin-left: 3px; width: 200px" type="password" name="new_pass"><br> 
+            Re-Password <input style="margin-left: 11px; width: 200px" type="password" name="re_pass"><br> 
+            <input type="submit" value="Change">
+        </form>
+        <h1 style="color: red">${changeSucces}</h1>
+            <h1 style="color: red">${notDuplicate}</h1>
+            <h1 style="color: red">${oldpassKhongDung}</h1>
     </body>
-
-    <script>
+             <script>
         function LoginLogout() {
             let x = document.getElementById('LoginLogout');
             if (x.style.display == 'none') {

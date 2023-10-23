@@ -138,7 +138,7 @@ public class AccountDAO extends DBContext {
     }
 
     public List<Account> getListAccountByName(String nameSearch) {
-      List<Account> list = new ArrayList<>();
+        List<Account> list = new ArrayList<>();
         //connect db
         connection = getConnection();
         String sql = "SELECT *\n"
@@ -147,7 +147,7 @@ public class AccountDAO extends DBContext {
         try {
             //prepare command
             statement = connection.prepareStatement(sql);
-            statement.setString(1,  nameSearch + "%");
+            statement.setString(1, nameSearch + "%");
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
@@ -167,5 +167,56 @@ public class AccountDAO extends DBContext {
             Logger.getLogger(bookDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    public void updateAccount(String usernameUD, String passwordUD, Date date, boolean genderUD, int roleUD) {
+        connection = getConnection();
+        String sql = "UPDATE [dbo].[Account]\n"
+                + "   SET [username] = ?\n"
+                + "      ,[password] =?\n"
+                + "      ,[date] = ?\n"
+                + "      ,[gender] = ?\n"
+                + "      ,[role] = ?\n"
+                + " WHERE [username] like ?";
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, usernameUD);
+            statement.setString(2, passwordUD);
+            statement.setDate(3, date);
+            statement.setBoolean(4, genderUD);
+            statement.setInt(5, roleUD);
+            statement.setString(6, usernameUD);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public boolean checkOldPass(String username, String pass) {
+        boolean check = false;
+        for (Account account : getListAccount()) {
+            if (account.getUsername().equals(username) && account.getPassword().equals(pass)) {
+                check = true;
+            }
+        }
+        return check;
+    }
+
+    public void changePass(String user, String new_pass) {
+        connection = getConnection();
+        String sql = "UPDATE [dbo].[Account]\n"
+                + "   SET [password] = ?\n"
+                + "      \n"
+                + " WHERE username like ?";
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, new_pass);
+            statement.setString(2, user);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

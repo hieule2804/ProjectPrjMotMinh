@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
         <!-- Css Styles -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
@@ -25,12 +25,12 @@
 
     </head>
     <body class="container">
-           <%
+        <%
 if(  session.getAttribute("account")==null)
-                            {
-                           request.getRequestDispatcher("login.jsp").forward(request, response);
-                            }
-                            %>
+                         {
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
+                         }
+        %>
         <!--header-->
         <div class="header container ">
             <div class="firtHeader row" style="    margin-top: -20px;">
@@ -104,7 +104,10 @@ if(  session.getAttribute("account")==null)
 
                                     <li>  <a href="login"><i class=""></i> LOG OUT
                                         </a></li>
-                                    <li></li>
+                                     <li>
+                                       <a href="login?action=changePass><i class=""></i> Change Password
+                                    </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -126,7 +129,7 @@ if(  session.getAttribute("account")==null)
             </div>
             <!-- list the loai sach -->
             <div class="ThanhSelect">
-                <nav class="navbar navbar-default " style="margin-top: -20px;">
+                <nav class="navbar navbar-default " style="margin-top: -5px;">
                     <div class="container">
 
                         <ul class="nav nav-pills">
@@ -154,16 +157,17 @@ if(  session.getAttribute("account")==null)
         </div>
         <!--body-->
         <c:set value="${detailBook}" var="d"></c:set>
-        <div class="mt-4" style="width: 100%; height: 100vh">
-            <div style="width: 100%; height: 100vh">
-                <div class="col-md-12" style="width: 100%; height: 100vh">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="images p-3" style="height: 100%;">
-                                    <div class="text-center p-4"> <img id="main-image" src="${d.image}" width="250"
+            <!--book detail-->
+            <div class="mt-4" style="width: 100%; height: 100vh">
+                <div style="width: 100%; height: 100vh">
+                    <div class="col-md-12" style="width: 100%; height: 100vh">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="images p-3" style="height: 100%;">
+                                        <div class="text-center p-4"> <img id="main-image" src="${d.image}" width="250"
                                                                        style="height: 500px;
-    width: 300px; " /> </div>
+                                                                       width: 450px; " /> </div>
                                     <!--<div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://doanducdong.com/wp-content/uploads/2021/10/dac-nhan-tam-1.jpg" width="70"> <img onclick="change_image(this)" src="https://doanducdong.com/wp-content/uploads/2021/10/dac-nhan-tam-1.jpg" width="70"> </div>-->
                                 </div>
                             </div>
@@ -179,16 +183,41 @@ if(  session.getAttribute("account")==null)
 
                                     <div class="cart mt-4 align-items-center"> 
                                         <form action="bookdetail?action=buybook&id=${d.id}" method="post">
-                                        <button class="btn btn-primary text-uppercase mr-2 px-4">BUY</button> 
+                                            <button class="btn btn-primary text-uppercase mr-2 px-4">BUY</button> 
                                         </form>
                                         <form action="bookdetail?action=addtocard&id=${d.id}" method="post">
-                                        <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> 
+                                            <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> 
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <h1 style="color: red;">Đánh Giá Sản Phẩm</h1>
+                         <!--danh gia san pham-->
+                    <c:set value="${account}" var="a"></c:set>
+
+                        <div>
+                            <form action="comment?action=AddComment&id=${detailBook.id}" method="post">
+
+                            <img style="border-radius: 50%;width: 40px; height: 40px;"
+                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWT51mhd8Qcq6Pux_gY1H9FwXBqvHGBXPTHYRYXs-AWSr52Tribwj3gbiPYn9ORSRI0yc&usqp=CAU">
+                            <input style="border: 0px;font-size: 30px" type="text" readonly name="username" value="${a.username}"><br>
+                            <input style="margin-left: 50px; width: 1050px;" type="text" name="commnent"
+                                   placeholder="Write Comment"><br>
+                            <input style="margin-left: 1000px ;width: 100px" type="submit" value="Send">
+                        </form>
+                    </div>
+                    <!-- list comment -->
+                    <c:forEach items="${listcomment}" var="cmt" >
+
+                        <img style="border-radius: 50%;width: 40px; height: 40px;"
+                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWT51mhd8Qcq6Pux_gY1H9FwXBqvHGBXPTHYRYXs-AWSr52Tribwj3gbiPYn9ORSRI0yc&usqp=CAU">
+                        <input style="border: 0px;font-size: 30px" type="text" readonly name="username" value="${cmt.cmtuser}"><br>
+                        COMMENT:<input style="margin-left: 50px; width: 1000px;" type="text" readonly name="commnent" value="${cmt.cmtdetail}"
+                                       ><br>
+                    </c:forEach>
+                    
                 </div>
             </div>
         </div>

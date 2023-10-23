@@ -26,15 +26,28 @@ public class LoginServlet extends HttpServlet {
 
     AccountDAO accdao = new AccountDAO();
     bookDao bookdao = new bookDao();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.removeAttribute("account");
-        session.getAttribute("PageControl");
-        session.getAttribute("listBook");
-        session.getAttribute("listcate");
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        switch (action) {
+            case "logout":
+                session.removeAttribute("account");
+                session.getAttribute("PageControl");
+                session.getAttribute("listBook");
+                session.getAttribute("listcate");
+                request.getRequestDispatcher("home.jsp").forward(request, response);
+                break;
+            case "changePass":
+                session.getAttribute("PageControl");
+                session.getAttribute("listBook");
+                session.getAttribute("listcate");
+                request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+                break;
+           
+        }
     }
 
     @Override
@@ -53,19 +66,17 @@ public class LoginServlet extends HttpServlet {
                     request.setAttribute("mess", "username or password not valid");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 } else {
-                    if(accdao.checkAccount(username, password).getRole()==3)
-                    {
-                    session.setAttribute("account", accdao.checkAccount(username, password));
-                    response.sendRedirect("home.jsp");
+                    if (accdao.checkAccount(username, password).getRole() == 3) {
+                        session.setAttribute("account", accdao.checkAccount(username, password));
+                        response.sendRedirect("home.jsp");
 
-                    }else if(accdao.checkAccount(username, password).getRole()==2)
-                    {
-                    session.setAttribute("account", accdao.checkAccount(username, password));
-                    session.setAttribute("listBook",bookdao.getListBook() );
-                    response.sendRedirect("admin");
+                    } else if (accdao.checkAccount(username, password).getRole() == 2) {
+                        session.setAttribute("account", accdao.checkAccount(username, password));
+                        session.setAttribute("listBook", bookdao.getListBook());
+                        response.sendRedirect("admin");
                     }
                 }
-            
+
                 break;
 
             case "register":
@@ -87,13 +98,13 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     try {
                         //chuyen date tu string sang date
-                      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                      // parsedDate dang la java.util.date
-                      Date parsedDate = (Date) dateFormat.parse(dateRe);
-                     
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        // parsedDate dang la java.util.date
+                        Date parsedDate = (Date) dateFormat.parse(dateRe);
+
                         // add vao db
                         // chuyen parsedDate thanh java.sql.date
-                        accdao.addToDB(usernameRe, passwordRe, new java.sql.Date(parsedDate.getTime()) , gender);
+                        accdao.addToDB(usernameRe, passwordRe, new java.sql.Date(parsedDate.getTime()), gender);
                         session.setAttribute("account", accdao.checkAccount(usernameRe, passwordRe));
                         request.getRequestDispatcher("home.jsp").forward(request, response);
                     } catch (Exception e) {

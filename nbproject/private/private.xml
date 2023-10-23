@@ -2,6 +2,25 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/controller/CardCRUD.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/controller/AdminCRUDBook.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/web/card.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/dal/OrderDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/model/order.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/model/BestSellingProduct.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/controller/OrderServlet.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/web/ForAdmin.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/controller/BookDetail.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/dal/bookDao.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/web/listOrder.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/web/listOrderDetail.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/web/ForAdminAccount.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/web/productdetails.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/dal/AccountDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/controller/AdminCRUDAccount.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/PRJ301/ThuLamWeb/src/java/dal/DBContext.java</file>
+        </group>
     </open-files>
 </project-private>

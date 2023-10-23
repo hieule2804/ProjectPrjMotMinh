@@ -94,9 +94,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                             <div class="top-cart-content" id="LoginLogout" style="display: none;     margin-left: -30px;">
                                 <ul>
 
-                                  <li>  <a href="login"><i class=""></i> LOG OUT
+                                  <li>  <a href="login?action=logout"><i class=""></i> LOG OUT
                                     </a></li>
-                                    <li></li>
+                                    <li>
+                                       <a href="login?action=changePass"><i class=""></i>Change Password
+                                    </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -118,7 +121,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
             <!-- list the loai sach -->
             <div class="ThanhSelect">
-                <nav class="navbar navbar-default " style="margin-top: -20px;">
+                <nav class="navbar navbar-default " style="margin-top: -5px;">
                     <div class="container">
 
                         <ul class="nav nav-pills">

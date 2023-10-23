@@ -17,36 +17,32 @@ import java.io.PrintWriter;
  *
  * @author ADMIN
  */
-public class OderServlet extends HttpServlet {
+public class OrderServlet extends HttpServlet {
 
     OrderDAO orderdao = new OrderDAO();
 
-   
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          
-
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String action = request.getParameter("action");
         HttpSession session = request.getSession();
-                String action = request.getParameter("action");
         switch (action) {
             case "getOrder":
-                session.setAttribute("theMostUser", orderdao.getTheMostUser());
-                session.setAttribute("bestselling", orderdao.getbestSelling());
-                request.setAttribute("listOrder", orderdao.getlistOrder());
+                session.setAttribute("listorder", orderdao.getlistOrder());
+                session.setAttribute("thebestuser", orderdao.getTheMostUser());
+                session.setAttribute("themostselling", orderdao.getbestSelling());
                 request.getRequestDispatcher("listOrder.jsp").forward(request, response);
                 break;
                 case"detail":
-                int id  = Integer.parseInt(request.getParameter("id"));
-                session.setAttribute("listdetail", orderdao.getListDetail(id));
-                request.getRequestDispatcher("listOrderDetail.jsp").forward(request, response);
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    session.setAttribute("listdetail", orderdao.getListDetail(id));
+                    request.getRequestDispatcher("listOrderDetail.jsp").forward(request, response);
 
                     break;
             default:
@@ -54,5 +50,5 @@ public class OderServlet extends HttpServlet {
         }
     }
 
-   
+  
 }

@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.CommentDAO;
 import dal.bookDao;
 import dal.categoriDAO;
 import jakarta.servlet.ServletException;
@@ -26,7 +27,7 @@ public class BookDetail extends HttpServlet {
 
    
 bookDao bookdao = new bookDao();
-        
+CommentDAO cmtdao = new CommentDAO();
      categoriDAO catedao = new categoriDAO();
     
     @Override
@@ -37,7 +38,8 @@ bookDao bookdao = new bookDao();
             case "getbook":
                 int id = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("detailBook", bookdao.getBookByid(id));
-        request.setAttribute("listcate", catedao.getListCate());
+                request.setAttribute("listcate", catedao.getListCate());
+                request.setAttribute("listcomment", cmtdao.getlistCommentbyId(id));
         request.getRequestDispatcher("productdetails.jsp").forward(request, response);
                 break;
             default:
