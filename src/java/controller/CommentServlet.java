@@ -46,6 +46,15 @@ String action = request.getParameter("action");
                 request.setAttribute("listcomment", comDAO.getlistCommentbyId(bid));
                 request.getRequestDispatcher("productdetails.jsp").forward(request, response);
                 break;
+            case"getlistcomment":
+                request.setAttribute("listcomment", comDAO.getListComment());
+                request.getRequestDispatcher("listComment.jsp").forward(request, response);
+                break;
+            case"delete":
+                int id =Integer.parseInt(request.getParameter("id"));
+                comDAO.deleteByid(id);
+                    request.setAttribute("listcomment", comDAO.getListComment());
+                    request.getRequestDispatcher("listComment.jsp").forward(request, response);
             default:
                 throw new AssertionError();
         }

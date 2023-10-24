@@ -5,6 +5,7 @@
 package controller;
 
 import dal.OrderDAO;
+import dal.categoriDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,11 +21,22 @@ import java.io.PrintWriter;
 public class OrderServlet extends HttpServlet {
 
     OrderDAO orderdao = new OrderDAO();
-
+    categoriDAO cateDAO = new categoriDAO();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        switch (action) {
+            case "history":
+                String name = request.getParameter("id");
+                request.setAttribute("listHistory", orderdao.getHistory(name));
+                request.setAttribute("listcate", cateDAO.getListCate());  
+                request.getRequestDispatcher("purchaseHistory.jsp").forward(request, response);
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
     @Override
@@ -36,6 +48,7 @@ public class OrderServlet extends HttpServlet {
             case "getOrder":
                 session.setAttribute("listorder", orderdao.getlistOrder());
                 session.setAttribute("thebestuser", orderdao.getTheMostUser());
+                session.setAttribute("numberOfOrder", orderdao.getnumberOfOrderBymostUSer(orderdao.getTheMostUser()));
                 session.setAttribute("themostselling", orderdao.getbestSelling());
                 request.getRequestDispatcher("listOrder.jsp").forward(request, response);
                 break;

@@ -50,9 +50,9 @@ public class CommentDAO extends DBContext {
                 + "      ,[cmtdetail]\n"
                 + "  FROM [dbo].[comment]";
         try {
-            statement=connection.prepareStatement(sql);
-            resultSet=statement.executeQuery();
-            while (resultSet.next()) {                
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
                 Comment c = new Comment();
                 c.setCmtid(resultSet.getInt("cmtid"));
                 c.setBid(resultSet.getInt("bid"));
@@ -64,16 +64,54 @@ public class CommentDAO extends DBContext {
             Logger.getLogger(CommentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
-   }
+    }
 
     public List<Comment> getlistCommentbyId(int id) {
         List<Comment> list = new ArrayList<>();
         for (Comment comment : getlistComment()) {
-            if(comment.getBid()==id)
-            {
+            if (comment.getBid() == id) {
                 list.add(comment);
             }
         }
         return list;
+    }
+
+    public List<Comment> getListComment() {
+        List<Comment> list = new ArrayList<>();
+        connection = getConnection();
+        String sql = "SELECT [cmtid]\n"
+                + "      ,[bid]\n"
+                + "      ,[cmtuser]\n"
+                + "      ,[cmtdetail]\n"
+                + "  FROM [dbo].[comment]";
+        try {
+            statement = connection.prepareStatement(sql);
+            resultSet=statement.executeQuery();
+            while (resultSet.next()) {
+             Comment c = new Comment();
+             c.setCmtid(resultSet.getInt("cmtid"));
+             c.setBid(resultSet.getInt("bid"));
+             c.setCmtuser(resultSet.getString("cmtuser"));
+             c.setCmtdetail(resultSet.getString("cmtdetail"));
+             list.add(c);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+return list;
+    }
+
+    public void deleteByid(int id) {
+         connection =getConnection();
+         String sql ="DELETE FROM [dbo].[comment]\n" +
+"      WHERE cmtid = ?";
+        try {
+            statement=connection.prepareStatement(sql);
+         statement.setInt(1, id);
+         statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

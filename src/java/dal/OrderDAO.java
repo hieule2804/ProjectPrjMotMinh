@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import model.Account;
 import model.BestSellingProduct;
 import model.Book;
+import model.HistoryCard;
 import model.card;
 import model.item;
 import model.order;
@@ -75,11 +76,11 @@ public class OrderDAO extends DBContext {
     public List<order> getlistOrder() {
         List<order> listu = new ArrayList<>();
         connection = getConnection();
-        String sql = "SELECT [id]\n" +
-"      ,[cusName]\n" +
-"      ,[date]\n" +
-"      ,[totalmoney]\n" +
-"  FROM [dbo].[Order]";
+        String sql = "SELECT [id]\n"
+                + "      ,[cusName]\n"
+                + "      ,[date]\n"
+                + "      ,[totalmoney]\n"
+                + "  FROM [dbo].[Order]";
         try {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
@@ -156,16 +157,16 @@ public class OrderDAO extends DBContext {
     public List<BestSellingProduct> getbestSelling() {
         List<BestSellingProduct> listb = new ArrayList<>();
         connection = getConnection();
-        String sql = "select top 1 bid,count(bid) as numberBook\n" +
-"  FROM [Testproject].[dbo].[OrderDetail]\n" +
-"  group by bid\n" +
-"  order by count(bid) desc";
+        String sql = "select top 1 bid,count(bid) as numberBook\n"
+                + "  FROM [Testproject].[dbo].[OrderDetail]\n"
+                + "  group by bid\n"
+                + "  order by count(bid) desc";
         try {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("bid");
-                Book a =  bookdao.getBookByid(id);
+                Book a = bookdao.getBookByid(id);
                 String name = a.getBookname();
                 int count = resultSet.getInt("numberBook");
                 BestSellingProduct b = new BestSellingProduct();
@@ -177,5 +178,56 @@ public class OrderDAO extends DBContext {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listb;
+    }
+
+    public List<HistoryCard> getHistory(String name) {
+        connection = getConnection();
+        List<HistoryCard> listH = new ArrayList<>();
+        String sql = "select date,bid,quantity,od.quantity*od.price as totalMoney\n"
+                + "                From [Order] o join OrderDetail od on o.id=od.oid\n"
+                + "                 where o.cusName like ?";
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                HistoryCard h = new HistoryCard();
+                h.setDate(resultSet.getDate("date"));
+                h.setBookname(bookdao.getBookByid(resultSet.getInt("bid")).getBookname());
+                h.setQuantity(resultSet.getInt("quantity"));
+                h.setTotalMoney(resultSet.getInt("totalMoney"));
+                listH.add(h);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listH;
+    }
+
+    public static void main(String[] args) {
+        OrderDAO o = new OrderDAO();
+        for (HistoryCard h : o.getHistory("user1")) {
+            System.out.println(h);
+        }
+    }
+
+    public int getnumberOfOrderBymostUSer(String theMostUser) {
+        int number = 0;
+        connection = getConnection();
+        String sql = " select count(cusName) as number\n"
+                + "  from [Order]\n"
+                + "  where cusName like ?";
+        try {
+            statement=connection.prepareStatement(sql);
+            statement.setString(1, theMostUser);
+            resultSet=statement.executeQuery();
+            while(resultSet.next())
+            {
+                number =resultSet.getInt("number");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return number;
     }
 }

@@ -104,7 +104,7 @@ if( session.getAttribute("account") == null)
                             <div class="top-cart-content" id="LoginLogout" style="display: none;     margin-left: -30px;">
                                 <ul>
 
-                                    <a href="login"><i class=""></i> LOG OUT
+                                    <a href="login?action=logout"><i class=""></i> LOG OUT
                                     </a></li>
                                 </ul>
                             </div>
@@ -156,6 +156,11 @@ if( session.getAttribute("account") == null)
               margin-top: -25px;" action="order?action=getOrder" method="post">
             <input type="submit" value="order">
         </form>
+        <!--list comment-->
+                 <form style="margin-left: 600px;
+                      margin-top: -25px;" action="comment?action=getlistcomment" method="post">
+                    <input type="submit" value="Comment">
+                </form>
             </nav>
         </div>
 

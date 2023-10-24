@@ -101,7 +101,7 @@ response.sendRedirect("login.jsp");
                             <div class="top-cart-content" id="LoginLogout" style="display: none;     margin-left: -30px;">
                                 <ul>
 
-                                    <a href="login"><i class=""></i> LOG OUT
+                                    <a href="login?action=logout"><i class=""></i> LOG OUT
                                     </a></li>
                                 </ul>
                             </div>
@@ -152,79 +152,87 @@ response.sendRedirect("login.jsp");
                       margin-top: -25px;" action="order?action=getOrder" method="post">
                     <input type="submit" value="order">
                 </form>
+                <!--list comment-->
+                <form style="margin-left: 600px;
+                      margin-top: -25px;" action="comment?action=getlistcomment" method="post">
+                    <input type="submit" value="Comment">
+                </form>
             </nav>
         </div>
-    
 
-    <!--list Order-->
-    
-        
+
+        <!--list Order-->
+
+
         <table border="1" style="width: 400px;
-    margin-left: 300px;">
-        <thead>
-            <tr>
-                <th>OrderID</th>
-                <th>CustomerName</th>
-                <th>Date</th>
-                <th>TotalMoney</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${listorder}" var="order">
-                
-            <tr>
-                <td>${order.id}</td>
-                <td>${order.cusname}</td>
-                <td>${order.date}</td>
-                <td>${order.totaloney}</td>
-                <td>
-                    <form action="order?action=detail&id=${order.id}" method="post">
-                        <input type="submit" value="Detail">
-                    </form>
-                </td>
-            </tr>
-            </c:forEach>
-        </tbody>
-   </table>
+               margin-left: 300px;">
+            <thead>
+                <tr>
+                    <th>OrderID</th>
+                    <th>CustomerName</th>
+                    <th>Date</th>
+                    <th>TotalMoney</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${listorder}" var="order">
+
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>${order.cusname}</td>
+                        <td>${order.date}</td>
+                        <td>${order.totaloney}</td>
+                        <td>
+                            <form action="order?action=detail&id=${order.id}" method="post">
+                                <input type="submit" value="Detail">
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
         <!--list thong ke-->
         <table border="1" style="margin-left: 800px;
-    margin-top: -124px;">
-           <thead>
-               <tr>
-                   <th>customers buy the most</th>
-               </tr>
-           </thead>
-           <tbody>
-               <c:set value="${thebestuser}" var="bestuser"></c:set>
-               <tr>
-                   <td>${bestuser}</td>
-                   
-               </tr>
-            
-           </tbody>
-       </table>
-  
-                       <table border="1" style="margin-left: 1000px;
-    margin-top: -45px;">
-           <thead>
-               <tr>
-                   <th>best-selling</th>
-                   <th>number Of Book</th>
-               </tr>
-           </thead>
-           <tbody>
-               <c:forEach items="${themostselling}" var="themostselling">
-                   
-               <tr>
-                   <td>${themostselling.name}</td>
-                    <td>${themostselling.count}</td>
-               </tr>
-               </c:forEach>
-            
-           </tbody>
-       </table>
-</body>
+               margin-top: -180px;">
+            <thead>
+                <tr>
+                    <th>customers buy the most</th>
+                    <th>number of order</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <c:set value="${thebestuser}" var="bestuser"></c:set>
+                <c:set value="${numberOfOrder}" var="number"></c:set>
+                    <tr>
+                        <td>${bestuser}</td>
+                    <td>${number}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <table border="1" style="margin-left: 799px;
+    margin-top: 60px;">
+            <thead>
+                <tr>
+                    <th>best-selling</th>
+                    <th>number Of Book</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${themostselling}" var="themostselling">
+
+                    <tr>
+                        <td>${themostselling.name}</td>
+                        <td>${themostselling.count}</td>
+                    </tr>
+                </c:forEach>
+
+            </tbody>
+        </table>
+    </body>
 
 </html>
 <script>

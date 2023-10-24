@@ -148,50 +148,30 @@ if( session.getAttribute("account") == null)
         </div>
         <!--body-->
         <div>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>BOOK NAME</th>
-                    <th>Quantity</th>
-                    <th>PRICE</th>
-                     <th>TotalMoney</th>
-                     <th>Action</th>
-
-
-                </tr>
-            </thead>
-                
-            <tbody>
-                <c:set var="b" value="${sessionScope.card}"/>
-                <c:forEach items="${b.item}" var="book">
-                <tr>
-                    <td>${book.book.bookname}</td>
-                    <td>
-                        <button><a href="card?num=-1&id=${book.book.id}">-</a></button>
-                        <input type="text" readonly value="${book.quantity}"> 
-                        <button><a href="card?num=1&id=${book.book.id}">+</a></button>
-                    </td>
-                    <td>${book.price}</td>
-                    <td>${book.quantity*book.price}</td>
-                    <td>
-                        <form action="card?action=deleteBookOnCard" method="post">
-                            <input type="hidden" name="id" value="${book.book.id}">
-                            <input type="submit" value="Delete">
-                        </form>
-                    </td>
-                </tr>
-                
-            </c:forEach>
-            </tbody>
-        </table>
-             
+  
+                <!--lich su mua hang-->
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Book</th>
+                            <th>Quantity</th>
+                            <th>TotalMOney</th>
+                        </tr>
+                    </thead>
+                        
+                    <tbody>
+                        <c:forEach items="${listHistory}" var="h">
+                        <tr>
+                            <td>${h.date}</td>
+                            <td>${h.bookname}</td>
+                            <td>${h.quantity}</td>
+                            <td>${h.totalMoney}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
 </div>
-     <!--Buy Card-->
-     <form action="card?action=buyCard" method="post">
-         <input type="submit" value="BUY">
-     </form>
-     <c:set value="${sessionScope.account}" var="a"></c:set>
-     <h2><a href="order?action=history&id=${a.username}">purchase history</a></h2>
      <h2> <a href="home.jsp">HOME</a></h2>
      
     </body>

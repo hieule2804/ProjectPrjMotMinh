@@ -102,7 +102,7 @@ if(  session.getAttribute("account")==null)
                             <div class="top-cart-content" id="LoginLogout" style="display: none;     margin-left: -30px;">
                                 <ul>
 
-                                    <li>  <a href="login"><i class=""></i> LOG OUT
+                                    <li>  <a href="login?action=logout"><i class=""></i> LOG OUT
                                         </a></li>
                                      <li>
                                        <a href="login?action=changePass><i class=""></i> Change Password

@@ -97,7 +97,7 @@ if( session.getAttribute("account") == null)
                             <div class="top-cart-content" id="LoginLogout" style="display: none;     margin-left: -30px;">
                                 <ul>
 
-                                    <a href="login"><i class=""></i> LOG OUT
+                                    <a href="login?action=logout"><i class=""></i> LOG OUT
                                     </a></li>
                                 </ul>
                             </div>
@@ -147,6 +147,7 @@ if( session.getAttribute("account") == null)
             </div>
         </div>
         <!--body-->
+        <div>
         <table border="1">
             <thead>
                 <tr>
@@ -183,11 +184,16 @@ if( session.getAttribute("account") == null)
             </c:forEach>
             </tbody>
         </table>
+             
+</div>
      <!--Buy Card-->
      <form action="card?action=buyCard" method="post">
          <input type="submit" value="BUY">
      </form>
+     <c:set value="${sessionScope.account}" var="a"></c:set>
+     <h2><a href="order?action=history&id=${a.username}">purchase history</a></h2>
      <h2> <a href="home.jsp">HOME</a></h2>
+     
     </body>
  <script>
         function LoginLogout() {
