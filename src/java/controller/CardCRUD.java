@@ -119,6 +119,9 @@ OrderDAO orderdao = new OrderDAO();
                 session.setAttribute("size", 0);
                 response.sendRedirect("home.jsp");
                 break;
+                case"confirmCard":
+                        request.getRequestDispatcher("ConfirmCard.jsp").forward(request, response);
+                        break;
             default:
                 throw new AssertionError();
         }

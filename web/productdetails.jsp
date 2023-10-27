@@ -105,7 +105,7 @@ if(  session.getAttribute("account")==null)
                                     <li>  <a href="login?action=logout"><i class=""></i> LOG OUT
                                         </a></li>
                                      <li>
-                                       <a href="login?action=changePass><i class=""></i> Change Password
+                                       <a href="login?action=changePass"><i class=""></i> Change Password
                                     </a>
                                     </li>
                                 </ul>

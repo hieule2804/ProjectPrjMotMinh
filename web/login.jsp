@@ -117,10 +117,10 @@
         <div class="row mb-4" style="padding-bottom: 20px;">
          
 
-            <div class="col-md-6">
-                <!-- Simple link -->
+<!--            <div class="col-md-6">
+                 Simple link 
                 <a href="#!">Forgot password?</a>
-            </div>
+            </div>-->
         </div>
 
         <!-- Submit button -->

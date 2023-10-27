@@ -35,6 +35,9 @@ public class LoginServlet extends HttpServlet {
         switch (action) {
             case "logout":
                 session.removeAttribute("account");
+                session.removeAttribute("card");
+                                session.removeAttribute("size");
+
                 session.getAttribute("PageControl");
                 session.getAttribute("listBook");
                 session.getAttribute("listcate");

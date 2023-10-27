@@ -187,7 +187,7 @@ if( session.getAttribute("account") == null)
              
 </div>
      <!--Buy Card-->
-     <form action="card?action=buyCard" method="post">
+     <form action="card?action=confirmCard" method="post">
          <input type="submit" value="BUY">
      </form>
      <c:set value="${sessionScope.account}" var="a"></c:set>
